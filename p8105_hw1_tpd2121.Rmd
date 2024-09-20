@@ -14,9 +14,20 @@ library(tidyverse)
 data("penguins", package = "palmerpenguins")
 ```
 
+### Description
+
 The penguins dataset contains `r nrow(penguins)` rows/observations and `r ncol(penguins)` columns/variables. The 8 variables observed in this dataset are penguin species, island where they are observed, bill length (in mm), bill depth (in mm), flipper length (in mm), body mass (in gr), sex, and year of observation. Species, island, and sex are all characters (or factors) data type, while the rest are numeric data. 
 
-The mean for bill length are `r mean(pull(penguins, flipper_length_mm), na.rm=TRUE)`
+The mean for bill length are `r mean(pull(penguins, flipper_length_mm), na.rm=TRUE)` mm. 
+
+### Scatterplot
+
+```{r scatterplot, echo = FALSE, message=FALSE, warning=FALSE}
+ggplot(penguins, aes(x=bill_length_mm, y=flipper_length_mm, color=species)) + geom_point()
+
+ggsave("plot_penguins.pdf",width=5,height=5)
+```
+
 
 ## Including Plots
 
