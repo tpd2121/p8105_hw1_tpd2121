@@ -16,9 +16,9 @@ data("penguins", package = "palmerpenguins")
 
 ### Description
 
-The penguins dataset contains `r nrow(penguins)` rows/observations and `r ncol(penguins)` columns/variables. The 8 variables observed in this dataset are penguin species, island where they are observed, bill length (in mm), bill depth (in mm), flipper length (in mm), body mass (in gr), sex, and year of observation. Species, island, and sex are all characters (or factors) data type, while the rest are numeric data. 
+The penguins dataset contains `r nrow(penguins)` rows/observations and `r ncol(penguins)` columns/variables. The 8 variables observed in this dataset are penguin species, island where they are observed, bill length (in mm), bill depth (in mm), flipper length (in mm), body mass (in gr), sex, and year of observation. Species, island, and sex are all characters (or factors) variable, while the rest are numeric variable. 
 
-The mean for bill length are `r mean(pull(penguins, flipper_length_mm), na.rm=TRUE)` mm. 
+The mean for bill length is `r mean(pull(penguins, flipper_length_mm), na.rm=TRUE)` mm. 
 
 ### Scatterplot
 
@@ -37,16 +37,26 @@ la_df = tibble(
   df_samp = rnorm(10),
   df_logical = df_samp > 0, 
   df_char = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"), 
-  df_factor = c("small", "small", "small", "medium", "medium", "big", "big", "big", "big", "big")
+  df_factor = c("warm", "warm", "warm", "warm", "hot", "hot", "hot", "cold", "cold", "cold")
 )
 ```
 
-The mean for the first variable is `r mean(pull(la_df, df_samp))`
+The mean for the numeric variable is `r mean(pull(la_df, df_samp))`
 <br>
-The mean for second variable is `r mean(pull(la_df, df_logical))`
+The mean for the logical variable is `r mean(pull(la_df, df_logical))`
 <br>
-The mean for third variable is `r mean(pull(la_df, df_char))`
+The mean for the character variable is `r mean(pull(la_df, df_char))`
 <br>
-The mean for fourth variable is `r mean(pull(la_df, df_factor))`
+The mean for the factor variable is `r mean(pull(la_df, df_factor))`
 
+Since the first two variables are numeric and logical, R can calculate the mean. Logical variables are coded as 0 and 1. Meanwhile, since character and factor are neither, R cannot calculate the mean and return the value as NA. 
 
+**Converting to numeric**
+
+```{r convert_num, warning=FALSE, message=FALSE, results='hide'}
+as.numeric(pull(la_df, df_logical))
+as.numeric(pull(la_df, df_char))
+as.numeric(pull(la_df, df_factor))
+```
+
+When the codes are executed, the results showed that the logical variables are converted to 1 and 0s, while character and factor variables are assigned "NA" values. This cause R unable to take the mean of character and vector variables.
