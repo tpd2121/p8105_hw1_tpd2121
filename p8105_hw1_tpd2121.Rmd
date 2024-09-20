@@ -16,7 +16,7 @@ data("penguins", package = "palmerpenguins")
 
 The penguins dataset contains `r nrow(penguins)` rows/observations and `r ncol(penguins)` columns/variables. The 8 variables observed in this dataset are penguin species, island where they are observed, bill length (in mm), bill depth (in mm), flipper length (in mm), body mass (in gr), sex, and year of observation. Species, island, and sex are all characters (or factors) data type, while the rest are numeric data. 
 
-The mean for bill length are `r mean(pull(penguins, flipper_length_mm))`
+The mean for bill length are `r mean(pull(penguins, flipper_length_mm), na.rm=TRUE)`
 
 ## Including Plots
 
