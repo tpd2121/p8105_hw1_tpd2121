@@ -28,13 +28,25 @@ ggplot(penguins, aes(x=bill_length_mm, y=flipper_length_mm, color=species)) + ge
 ggsave("plot_penguins.pdf",width=5,height=5)
 ```
 
+## Problem 2
 
-## Including Plots
+Data frame:
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r df}
+la_df = tibble(
+  df_samp = rnorm(10),
+  df_logical = df_samp > 0, 
+  df_char = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"), 
+  df_factor = c("small", "small", "small", "medium", "medium", "big", "big", "big", "big", "big")
+)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+The mean for the first variable is `r mean(pull(la_df, df_samp))`
+<br>
+The mean for second variable is `r mean(pull(la_df, df_logical))`
+<br>
+The mean for third variable is `r mean(pull(la_df, df_char))`
+<br>
+The mean for fourth variable is `r mean(pull(la_df, df_factor))`
+
+
